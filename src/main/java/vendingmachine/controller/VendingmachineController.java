@@ -1,5 +1,6 @@
 package vendingmachine.controller;
 
+import vendingmachine.dto.ChangeDto;
 import vendingmachine.dto.GeneratedCoinDto;
 import vendingmachine.service.VendingmachineService;
 import vendingmachine.view.InputView;
@@ -37,9 +38,12 @@ public class VendingmachineController {
                     String productName = inputView.readPurchaseProductName();
                     service.purchaseProduct(productName);
                     readClientPurchaseProduct();
+                    return;
                 }
 
-//               service.calculateChange();
+                ChangeDto changeDto = service.calculateChange();
+                outputView.printChangeInfo(changeDto);
+                break;
             } catch (IllegalArgumentException e) {
                 outputView.printExceptionMessage(e.getMessage());
             }

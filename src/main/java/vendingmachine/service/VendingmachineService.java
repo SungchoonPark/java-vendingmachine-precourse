@@ -1,6 +1,7 @@
 package vendingmachine.service;
 
 import vendingmachine.domain.VendingMachine;
+import vendingmachine.dto.ChangeDto;
 import vendingmachine.dto.GeneratedCoinDto;
 
 public class VendingmachineService {
@@ -23,7 +24,6 @@ public class VendingmachineService {
     }
 
     public boolean isPurchasePossible() {
-        // Todo : 자판기 최저 금액보다 작은 투입금액이 있거나, 재고가 없는 경우 false 리턴
         return vendingMachine.isPurchasePossible();
     }
 
@@ -33,5 +33,9 @@ public class VendingmachineService {
 
     public int getClientInputMoney() {
         return vendingMachine.getClientInputMoney();
+    }
+
+    public ChangeDto calculateChange() {
+        return vendingMachine.calculateChange();
     }
 }

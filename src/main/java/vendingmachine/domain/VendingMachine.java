@@ -1,10 +1,11 @@
 package vendingmachine.domain;
 
+import vendingmachine.dto.ChangeDto;
 import vendingmachine.dto.GeneratedCoinDto;
 
 public class VendingMachine {
-    private CoinManager coinManager;
-    private ProductManager productManager;
+    private final CoinManager coinManager;
+    private final ProductManager productManager;
     private int clientInputMoney;
 
     public VendingMachine() {
@@ -39,5 +40,9 @@ public class VendingMachine {
 
     public int getClientInputMoney() {
         return clientInputMoney;
+    }
+
+    public ChangeDto calculateChange() {
+        return coinManager.generateChange(clientInputMoney);
     }
 }
