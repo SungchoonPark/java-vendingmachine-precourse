@@ -9,6 +9,8 @@ import java.util.regex.Pattern;
 public class InputView {
     private static final String VENDINGMACHINE_HAVE_MONEY_MESSAGE = "자판기가 보유하고 있는 금액을 입력해 주세요.";
     private static final String VENDINGMACHINE_PRODUCTS_MESSAGE = "\n상품명과 가격, 수량을 입력해 주세요.";
+    private static final String CLIENT_INPUT_MONEY_MESSAGE = "\n투입 금액을 입력해 주세요.";
+
 
     private static final String REGEX = "\\[[\\w가-힣]+,\\d+,\\d+\\]";
     private static final Pattern pattern = Pattern.compile(REGEX);
@@ -18,7 +20,7 @@ public class InputView {
         String vendingMachineMoney = Console.readLine();
 
         checkInputIsEmpty(vendingMachineMoney);
-        int money = checkVendingMachineMoneyIsNum(vendingMachineMoney);
+        int money = checkMoneyIsNum(vendingMachineMoney);
         checkVendingMachineMoneyCanDividedTen(money);
 
         return money;
@@ -31,6 +33,15 @@ public class InputView {
         checkValidProductFormat(products);
 
         return products;
+    }
+
+    public int readClientInputMoney() {
+        System.out.println(CLIENT_INPUT_MONEY_MESSAGE);
+        String clientMoney = Console.readLine();
+        checkInputIsEmpty(clientMoney);
+        checkMoneyIsNum(clientMoney);
+
+        return Integer.parseInt(clientMoney);
     }
 
     private void checkInputIsEmpty(String input) {
@@ -50,7 +61,7 @@ public class InputView {
         }
     }
 
-    private int checkVendingMachineMoneyIsNum(String money) {
+    private int checkMoneyIsNum(String money) {
         try {
             return Integer.parseInt(money);
         } catch (Exception e) {

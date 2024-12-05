@@ -17,12 +17,22 @@ public class VendingmachineController {
     }
 
     public void run() {
-        int haveMoney = readVendingMachineMoney();
-
-        GeneratedCoinDto generatedCoinDto = service.generatedRandomCoins(haveMoney);
+        GeneratedCoinDto generatedCoinDto = service.generatedRandomCoins(readVendingMachineMoney());
         printGeneratedCoin(generatedCoinDto);
 
         generatedVendingMachineProduct();
+
+        readClientInputMoney();
+    }
+
+    private int readClientInputMoney() {
+        while (true) {
+            try {
+                return inputView.readClientInputMoney();
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e.getMessage());
+            }
+        }
     }
 
     private void generatedVendingMachineProduct() {
