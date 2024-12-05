@@ -34,11 +34,10 @@ public class VendingmachineController {
                 inputView.printClientInputMoney(clientInputMoney);
 
                 if (service.isPurchasePossible()) {
-                    // 구매 가능하다면 투입금액 상품금액 만큼 빼고 재고 갱신해주기
-                   String productName = inputView.readPurchaseProductName();
-                   service.purchaseProduct(productName);
+                    String productName = inputView.readPurchaseProductName();
+                    service.purchaseProduct(productName);
                     readClientPurchaseProduct();
-               }
+                }
 
 //               service.calculateChange();
             } catch (IllegalArgumentException e) {

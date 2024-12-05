@@ -10,7 +10,8 @@ public enum ExceptionMessage {
     INVALID_PRODUCT_PRICE("상품의 가격은 10원단위의 100원 이상을 입력해주세요."),
     INVALID_PRODUCT_QUANTITY("상품의 수량은 1개 이상으로 입력해주세요."),
 
-    NOT_EXIST_PRODUCT("존재하지 않는 상품입니다.");
+    NOT_EXIST_PRODUCT("존재하지 않는 상품입니다."),
+    EXPENSIVE_PRODUCT("비싼 상품입니다.");
 
     private final String message;
 

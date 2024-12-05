@@ -40,16 +40,19 @@ public class ProductManager {
     public boolean isPurchasePossible(int clientInputMoney) {
         if (!isProductExist())  return false;
 
+        boolean isPurchasePossible = false;
         for (Product product : products) {
-            if(!product.isPurchasePossible(clientInputMoney)) return false;
+            if(product.isPurchasePossible(clientInputMoney)) isPurchasePossible = true;
         }
 
-        return true;
+        return isPurchasePossible;
     }
 
-    public int purchaseProductByName(String productName) {
+    public int purchaseProductByName(String productName, int clientInputMoney) {
         Product findProduct = findProductByName(productName);
-        findProduct.minusQuantity();
+        findProduct.checkExpensiveThenClientMoney(clientInputMoney);
+        int quantity = findProduct.minusQuantity();
+        if (quantity == 0) products.remove(findProduct);
         return findProduct.getPrice();
     }
 

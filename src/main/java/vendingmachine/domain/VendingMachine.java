@@ -29,7 +29,7 @@ public class VendingMachine {
     }
 
     public void purchase(String productName) {
-        int productPrice = productManager.purchaseProductByName(productName);
+        int productPrice = productManager.purchaseProductByName(productName, clientInputMoney);
         minusClientMoney(productPrice);
     }
 

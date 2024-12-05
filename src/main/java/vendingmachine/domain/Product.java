@@ -21,6 +21,12 @@ public class Product {
         return true;
     }
 
+    public void checkExpensiveThenClientMoney(int clientMoney) {
+        if (price > clientMoney) {
+            throw new IllegalArgumentException(ExceptionMessage.EXPENSIVE_PRODUCT.getMessage());
+        }
+    }
+
     public Product compareProductName(String productName) {
         if (productName.equals(this.name)) return this;
         return null;
@@ -30,8 +36,9 @@ public class Product {
         return price;
     }
 
-    public void minusQuantity() {
+    public int minusQuantity() {
         this.quantity = quantity - 1;
+        return this.quantity;
     }
 
     private void checkValidPrice(int price) {
