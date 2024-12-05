@@ -16,6 +16,16 @@ public class VendingmachineController {
     }
 
     public void run() {
+        readVendingMachineMoney();
+    }
 
+    private int readVendingMachineMoney() {
+        while(true) {
+            try {
+                return inputView.readVendingMachineMoney();
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e.getMessage());
+            }
+        }
     }
 }

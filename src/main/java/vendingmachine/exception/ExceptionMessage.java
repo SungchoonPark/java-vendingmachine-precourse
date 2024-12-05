@@ -1,7 +1,10 @@
 package vendingmachine.exception;
 
 public enum ExceptionMessage {
-    COMMON_ERROR("[ERROR] ");
+    COMMON_ERROR("[ERROR] "),
+
+    INVALID_INPUT("유효한 값을 입력해주세요."),
+    INVALID_VENDINGMACHINE_MONEY("10원 단위로 나누어지지 않습니다.");
 
     private final String message;
 
