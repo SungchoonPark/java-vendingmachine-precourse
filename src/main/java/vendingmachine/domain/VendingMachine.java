@@ -8,9 +8,14 @@ public class VendingMachine {
 
     public VendingMachine() {
         this.coinManager = new CoinManager();
+        this.productManager = new ProductManager();
     }
 
     public GeneratedCoinDto generatedVendingMachine(int totalMoney) {
         return coinManager.generatedRandomCoins(totalMoney);
+    }
+
+    public void addProducts(String products) {
+        productManager.addProduct(products);
     }
 }

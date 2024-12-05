@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class OutputView {
+    private static final String HAVE_COIN_MESSAGE = "\n자판기가 보유한 동전";
 
     public void printExceptionMessage(String message) {
         System.out.println(message);
@@ -18,6 +19,7 @@ public class OutputView {
 
         Set<Map.Entry<Coin, Integer>> eachCoin = coins.entrySet();
 
+        System.out.println(HAVE_COIN_MESSAGE);
         for (Map.Entry<Coin, Integer> coinIntegerEntry : eachCoin) {
             int amount = coinIntegerEntry.getKey().getAmount();
             Integer coinCount = coinIntegerEntry.getValue();

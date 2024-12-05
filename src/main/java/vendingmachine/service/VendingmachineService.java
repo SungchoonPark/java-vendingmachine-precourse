@@ -13,4 +13,8 @@ public class VendingmachineService {
     public GeneratedCoinDto generatedRandomCoins(int haveMoney) {
         return vendingMachine.generatedVendingMachine(haveMoney);
     }
+
+    public void addProductToVendingMachine(String products) {
+        vendingMachine.addProducts(products);
+    }
 }
