@@ -22,8 +22,19 @@ public class VendingmachineController {
         GeneratedCoinDto generatedCoinDto = service.generatedRandomCoins(haveMoney);
         printGeneratedCoin(generatedCoinDto);
 
-        String products = readVendingMachineProduct();
-        service.addProductToVendingMachine(products);
+        generatedVendingMachineProduct();
+    }
+
+    private void generatedVendingMachineProduct() {
+        while (true) {
+            try {
+                String products = readVendingMachineProduct();
+                service.addProductToVendingMachine(products);
+                return;
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e.getMessage());
+            }
+        }
     }
 
     private int readVendingMachineMoney() {

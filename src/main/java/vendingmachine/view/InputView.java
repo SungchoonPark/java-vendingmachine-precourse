@@ -43,7 +43,6 @@ public class InputView {
         String[] productList = products.split(";");
 
         for (String product : productList) {
-            System.out.println("product = " + product);
             Matcher matcher = pattern.matcher(product);
             if (!matcher.matches()) {
                 throw new IllegalArgumentException(ExceptionMessage.INVALID_PRODUCT_FORMAT.getMessage());

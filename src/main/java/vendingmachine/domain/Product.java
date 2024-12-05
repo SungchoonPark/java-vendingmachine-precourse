@@ -1,20 +1,29 @@
 package vendingmachine.domain;
 
-public class Product {
-    private String name;
-    private Integer price;
-    private Integer quantity;
+import vendingmachine.exception.ExceptionMessage;
 
-    public Product(String name, Integer price, Integer quantity) {
+public class Product {
+    private final String name;
+    private final int price;
+    private int quantity;
+
+    public Product(String name, int price, int quantity) {
+        checkValidPrice(price);
+        checkValidQuantity(quantity);
         this.name = name;
         this.price = price;
         this.quantity = quantity;
     }
 
-    // Todo : price가 100원 이상인지, 10원으로 나누어 떨어지는지 확인해야함.
+    private void checkValidPrice(int price) {
+        if (price < 100 || price % 10 != 0) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_PRODUCT_PRICE.getMessage());
+        }
+    }
 
-
-    public String getName() {
-        return name;
+    private void checkValidQuantity(int quantity) {
+        if (quantity <= 0) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_PRODUCT_QUANTITY.getMessage());
+        }
     }
 }

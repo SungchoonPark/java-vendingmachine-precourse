@@ -6,7 +6,9 @@ public enum ExceptionMessage {
     INVALID_INPUT("유효한 값을 입력해주세요."),
     INVALID_VENDINGMACHINE_MONEY("10원 단위로 나누어지지 않습니다."),
 
-    INVALID_PRODUCT_FORMAT("올바른 상품 형식이 아닙니다.");
+    INVALID_PRODUCT_FORMAT("올바른 상품 형식이 아닙니다."),
+    INVALID_PRODUCT_PRICE("상품의 가격은 10원단위의 100원 이상을 입력해주세요."),
+    INVALID_PRODUCT_QUANTITY("상품의 수량은 1개 이상으로 입력해주세요.");
 
     private final String message;
 
