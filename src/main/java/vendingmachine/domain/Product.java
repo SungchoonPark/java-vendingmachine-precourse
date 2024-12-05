@@ -15,6 +15,25 @@ public class Product {
         this.quantity = quantity;
     }
 
+    public boolean isPurchasePossible(int clientMoney) {
+        if (price > clientMoney) return false;
+
+        return true;
+    }
+
+    public Product compareProductName(String productName) {
+        if (productName.equals(this.name)) return this;
+        return null;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void minusQuantity() {
+        this.quantity = quantity - 1;
+    }
+
     private void checkValidPrice(int price) {
         if (price < 100 || price % 10 != 0) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_PRODUCT_PRICE.getMessage());

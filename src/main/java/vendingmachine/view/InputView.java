@@ -10,6 +10,8 @@ public class InputView {
     private static final String VENDINGMACHINE_HAVE_MONEY_MESSAGE = "자판기가 보유하고 있는 금액을 입력해 주세요.";
     private static final String VENDINGMACHINE_PRODUCTS_MESSAGE = "\n상품명과 가격, 수량을 입력해 주세요.";
     private static final String CLIENT_INPUT_MONEY_MESSAGE = "\n투입 금액을 입력해 주세요.";
+    private static final String PURCHASE_MESSAGE = "구매할 상품명을 입력해 주세요.";
+    private static final String CLIENT_MONEY_MESSAGE = "\n투입 금액: %d원";
 
 
     private static final String REGEX = "\\[[\\w가-힣]+,\\d+,\\d+\\]";
@@ -44,6 +46,14 @@ public class InputView {
         return Integer.parseInt(clientMoney);
     }
 
+    public String readPurchaseProductName() {
+        System.out.println(PURCHASE_MESSAGE);
+        String productName = Console.readLine();
+        checkInputIsEmpty(productName);
+
+        return productName;
+    }
+
     private void checkInputIsEmpty(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT.getMessage());
@@ -72,7 +82,10 @@ public class InputView {
     private void checkVendingMachineMoneyCanDividedTen(int money) {
         if (money % 10 != 0) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_VENDINGMACHINE_MONEY.getMessage());
-
         }
+    }
+
+    public void printClientInputMoney(int clientInputMoney) {
+        System.out.println(String.format(CLIENT_MONEY_MESSAGE, clientInputMoney));
     }
 }

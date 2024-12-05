@@ -1,5 +1,7 @@
 package vendingmachine.domain;
 
+import vendingmachine.exception.ExceptionMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -29,5 +31,33 @@ public class ProductManager {
                 this.products.add(new Product(name, price, quantity));
             }
         }
+    }
+
+    private boolean isProductExist() {
+        return products.size() != 0;
+    }
+
+    public boolean isPurchasePossible(int clientInputMoney) {
+        if (!isProductExist())  return false;
+
+        for (Product product : products) {
+            if(!product.isPurchasePossible(clientInputMoney)) return false;
+        }
+
+        return true;
+    }
+
+    public int purchaseProductByName(String productName) {
+        Product findProduct = findProductByName(productName);
+        findProduct.minusQuantity();
+        return findProduct.getPrice();
+    }
+
+    public Product findProductByName(String productName) {
+        for (Product product : products) {
+            Product result = product.compareProductName(productName);
+            if (result != null) return result;
+        }
+        throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_PRODUCT.getMessage());
     }
 }
