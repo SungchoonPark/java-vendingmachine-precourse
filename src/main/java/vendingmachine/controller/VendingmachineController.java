@@ -1,5 +1,6 @@
 package vendingmachine.controller;
 
+import vendingmachine.dto.GeneratedCoinDto;
 import vendingmachine.service.VendingmachineService;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
@@ -16,7 +17,10 @@ public class VendingmachineController {
     }
 
     public void run() {
-        readVendingMachineMoney();
+        int haveMoney = readVendingMachineMoney();
+
+        GeneratedCoinDto generatedCoinDto = service.generatedRandomCoins(haveMoney);
+        printGeneratedCoin(generatedCoinDto);
     }
 
     private int readVendingMachineMoney() {
@@ -27,5 +31,9 @@ public class VendingmachineController {
                 outputView.printExceptionMessage(e.getMessage());
             }
         }
+    }
+
+    private void printGeneratedCoin(GeneratedCoinDto generatedCoinDto) {
+        outputView.printGeneratedCoin(generatedCoinDto);
     }
 }
